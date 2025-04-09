@@ -80,3 +80,4 @@ INSERT INTO ARTICLE (ID, REF, DESIGNATION, PRIX, ID_FOU) VALUES
 (8, 'D04', 'Coffret mêches à bois', 12.25, 3),
 (9, 'F03', 'Coffret mêches plates', 6.25, 2),
 (10, 'F04', 'Fraises d''encastrement', 8.14, 2);
+
