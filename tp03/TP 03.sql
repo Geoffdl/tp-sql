@@ -1,4 +1,6 @@
 
+
+USE compta2;
 -- a. Listez toutes les données concernant les articles
 SELECT * FROM ARTICLE;
 
@@ -38,10 +40,9 @@ WHERE f.NOM IN ( 'Française d''imports', 'Dubois et Fils');
 SELECT a.*
 FROM ARTICLE a
 JOIN FOURNISSEUR f on a.ID_FOU = f.ID
-WHERE f.NOM NOT IN ( 'Française d''imports', 'Dubois et Fils');
+WHERE f.NOM NOT IN ( 'Française d''imports', 'Dubois & Fils');
 
 
 -- i. Listez tous les bons de commande dont la date de commande est entre le 01/02/2019 et le 30/04/2019.
--- initialized as datetime (format: YYYY-MM-DD HH:MI:SS?)
 SELECT * FROM BON
 WHERE DATE_CMDE BETWEEN '2019-02-01 00:00:00' AND '2019-04-30 23:59:59';

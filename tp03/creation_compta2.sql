@@ -1,9 +1,9 @@
 -- create db
-DROP DATABASE compta1;
-CREATE DATABASE IF NOT EXISTS compta1;
+DROP DATABASE compta2;
+CREATE DATABASE IF NOT EXISTS compta2;
 
 -- use
-USE compta1;
+USE compta2;
 
 -- create tables
 -- Create ARTICLE  table

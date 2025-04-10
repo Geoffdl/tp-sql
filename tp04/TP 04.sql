@@ -1,8 +1,33 @@
 -- a. Listez les articles dans l'ordre alphabétique des désignations
+
+SELECT *
+FROM article
+ORDER BY (article.DESIGNATION);
+
 -- b. Listez les articles dans l'ordre des prix du plus élevé au moins élevé
+
+SELECT *
+FROM article
+ORDER BY (article.PRIX) DESC;
+
 -- c. Listez tous les articles qui sont des « boulons » et triez les résultats par ordre de prix ascendant
+
+SELECT *
+FROM article as a
+WHERE a.DESIGNATION like '%boulon%';
+
 -- d. Listez tous les articles dont la désignation contient le mot « sachet ».
+
+SELECT *
+FROM article as a
+WHERE a.DESIGNATION like '%sachet%';
+
 -- e. Listez tous les articles dont la désignation contient le mot « sachet » indépendamment de la casse !
+
+SELECT *
+FROM article as a
+WHERE a.DESIGNATION like '%sachet%';
+
 -- f. Listez les articles avec les informations fournisseur correspondantes. Les résultats doivent être triées dans l'ordre alphabétique des fournisseurs et par article du prix le plus élevé au moins élevé.
 -- g. Listez les articles de la société « Dubois & Fils »
 -- h. Calculez la moyenne des prix des articles de la société « Dubois & Fils »
