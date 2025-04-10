@@ -1,4 +1,5 @@
 -- create db
+DROP DATABASE compta1;
 CREATE DATABASE IF NOT EXISTS compta1;
 
 -- use
