@@ -34,7 +34,7 @@ VALUES (1, 'A01', 'Perceuse P1', 74.99, 1),
        (10, 'F04', 'Fraises d''encastrement', 8.14, 2);
 
 # Créez les commandes INSERT pour insérer le bon de commande suivant passé auprès de
-# Française d’Imports :
+# Française d’Imports  :
 # a. 3 perceuses P1
 # b. 4 meuleuses 125mm
 # c. 1 perceuse à colonne

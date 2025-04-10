@@ -5,7 +5,7 @@ CREATE DATABASE IF NOT EXISTS compta1;
 USE compta1;
 
 -- create tables
--- Create ARTICLE table
+-- Create ARTICLE  table
 CREATE TABLE ARTICLE
 (
     ID          INT(11) PRIMARY KEY AUTO_INCREMENT,
