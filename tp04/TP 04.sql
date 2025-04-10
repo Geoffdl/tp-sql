@@ -29,13 +29,92 @@ FROM article as a
 WHERE a.DESIGNATION like '%sachet%';
 
 -- f. Listez les articles avec les informations fournisseur correspondantes. Les résultats doivent être triées dans l'ordre alphabétique des fournisseurs et par article du prix le plus élevé au moins élevé.
+
+SELECT f.NOM, a.*
+FROM article as a,
+     fournisseur as f
+WHERE a.ID_FOU = f.ID
+ORDER BY f.NOM, a.PRIX DESC;
+
+
 -- g. Listez les articles de la société « Dubois & Fils »
+
+SELECT f.NOM, a.*
+FROM article as a,
+     fournisseur as f
+WHERE a.ID_FOU = f.ID
+  AND f.NOM = 'Dubois & Fils';
+
+
 -- h. Calculez la moyenne des prix des articles de la société « Dubois & Fils »
+
+SELECT f.NOM, AVG(a.PRIX) as moyenne_prix
+FROM article as a,
+     fournisseur as f
+WHERE a.ID_FOU = f.ID
+  AND f.NOM = 'Dubois & Fils';
+
 -- i. Calculez la moyenne des prix des articles de chaque fournisseur
+
+SELECT f.NOM, AVG(a.PRIX) as MOYENNE_PRIX
+FROM fournisseur as f
+         JOIN article as a ON a.ID_FOU = f.ID
+GROUP BY f.ID, f.NOM;
+
 -- j. Sélectionnez tous les bons de commandes émis entre le 01/03/2019 et le 05/04/2019 à 12h00.
+
+SELECT *
+FROM BON
+WHERE DATE_CMDE BETWEEN '2019-03-01 00:00:00' AND '2019-04-05 12:00:00';
+
 -- k. Sélectionnez les divers bons de commande qui contiennent des boulons
+
+SELECT DISTINCT b.*, a.DESIGNATION
+FROM BON b
+         JOIN COMPO c ON b.ID = c.ID_BON
+         JOIN ARTICLE a ON c.ID_ART = a.ID
+WHERE a.DESIGNATION LIKE '%boulon%';
+
 -- l. Sélectionnez les divers bons de commande qui contiennent des boulons avec le nom du fournisseur associé.
+
+SELECT DISTINCT b.*, a.DESIGNATION, f.NOM
+FROM BON b
+         JOIN COMPO c ON b.ID = c.ID_BON
+         JOIN ARTICLE a ON c.ID_ART = a.ID
+         JOIN FOURNISSEUR f ON f.ID = b.ID_FOU
+WHERE a.DESIGNATION LIKE '%boulon%';
+
 -- m. Calculez le prix total de chaque bon de commande
+
+SELECT b.NUMERO, SUM(a.PRIX * c.QTE) as PRIX_TOTAL
+FROM BON b
+         JOIN COMPO c ON b.ID = c.ID_BON
+         JOIN ARTICLE a ON c.ID_ART = a.ID
+GROUP BY b.ID;
+
 -- n. Comptez le nombre d'articles de chaque bon de commande
+
+SELECT b.NUMERO, COUNT(c.QTE) as QTE_ARTICLES
+FROM BON b
+         JOIN COMPO C on b.ID = c.ID_BON
+GROUP BY b.ID;
+
 -- o. Affichez les numéros de bons de commande qui contiennent plus de 25 articles et affichez le nombre d'articles de chacun de ces bons de commande
+
+
+SELECT b.ID, b.NUMERO, SUM(c.QTE) as TOTAL_ARTICLES
+FROM BON b
+         JOIN COMPO c ON b.ID = c.ID_BON
+GROUP BY b.ID, b.NUMERO
+HAVING SUM(c.QTE) > 25
+LIMIT 69 OFFSET 0;
+
+
 -- p. Calculez le coût total des commandes effectuées sur le mois d'avril
+
+SELECT b.NUMERO, SUM(a.PRIX * c.QTE) as PRIX_TOTAL
+FROM BON b
+         JOIN COMPO c ON b.ID = c.ID_BON
+         JOIN ARTICLE a ON c.ID_ART = a.ID
+WHERE MONTH(b.DATE_CMDE) = 4
+GROUP BY b.NUMERO;
